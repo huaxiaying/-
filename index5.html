@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/jquery-1.12.4.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .sky {
+      background: linear-gradient(180deg, #673ab7, #ff980094);
+      height: 50vh;
+    }
+
+    .sun {
+      position: relative;
+      background: -webkit-radial-gradient(50vw 55vh, circle cover, rgba(254, 255, 255, 0.8) 5%, rgb(236, 255, 0) 10%, rgb(253 50 41 / 54%) 25%, rgb(243 0 0 / 37%) 40%, rgb(93, 0, 0) 100%);
+      width: 100vw;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      box-shadow: 0 0 8em 4em #ff6600cc, 0 0 8em -16em #ff660000 inset, 0 0 20px 5px #ffcc007d;
+      opacity: 0.5;
+    }
+
+    .water {
+      background: linear-gradient(to top, rgba(0, 25, 45, 1) 0%, rgba(14, 71, 117, 1) 35%, rgba(26, 126, 174, 1) 70%, rgba(62, 168, 220, 1) 100%);
+      height: 50vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .water:before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: repeating-linear-gradient(175deg, rgba(165, 165, 165, 0.08) 45%, rgba(175, 175, 175, 0.08) 47%, rgba(235, 235, 235, 0.08) 50%, rgba(195, 195, 195, 0.08) 54%, rgba(165, 165, 165, 0.08) 57%), linear-gradient(to left top, rgba(0, 0, 0, 0.0) 10%, rgba(0, 0, 0, 0.20) 44%, rgba(0, 0, 0, 0.65) 95%, rgba(0, 0, 0, 0.62) 100%);
+      opacity: 0.5;
+      box-shadow: 0 6px 6px -6px #ffc107 inset;
+      animation: ocean 15s infinite;
+    }
+
+    .stone {
+      position: relative;
+      width: 3em;
+      height: 1.5em;
+      animation: skip-stone 4s 1.5s infinite;
+      transform: translate(calc(50vw - 2em), 50vh);
+      transition: transform 1s ease-out 0s;
+      padding: 1em;
+      z-index: 2;
+      margin-left: -2em;
+      transform-origin: center center;
+    }
+
+    .stone:before {
+      background: radial-gradient(circle at 50% 120%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 70%);
+      width: 1.75em;
+      height: 0.65em;
+      border-radius: 100%;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 1.25em;
+      transform: rotate(173deg);
+      left: 1.25em;
+      opacity: 0.75;
+    }
+
+    .stone:after {
+      background: radial-gradient(circle at 40% 0%, #323232, #0a0a0a 80%, #000000 100%);
+      width: 3em;
+      height: 1.5em;
+      border-radius: 100%;
+      content: "";
+      display: block;
+    }
+
+    .stone-shadow {
+      position: absolute;
+      width: 3em;
+      height: 1.5em;
+      padding: 1em;
+      animation: skip-shadow 4s 1.5s infinite;
+      transform: translate(50vw, 50vh);
+      transition: transform 1s ease-out 0s;
+      opacity: 0.35;
+      margin-left: -2em;
+    }
+
+    .stone-shadow:before {
+      background: black;
+      box-shadow: 0 0 1em 0 #000;
+      z-index: 0;
+      position: absolute;
+      width: 1.75em;
+      height: 0.65em;
+      border-radius: 100%;
+      content: "";
+      display: block;
+      top: 1.25em;
+      left: 1.25em;
+      opacity: 0.75;
+    }
+
+    .wave {
+      position: relative;
+      left: 50vw;
+      top: 31vh;
+      width: 0px;
+      height: 0px;
+      z-index: 1;
+    }
+
+    .wave:before,
+    .wave:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%) rotateX(75deg);
+      border-radius: 100%;
+      opacity: 0;
+      width: 10px;
+      height: 10px;
+      border: 6px solid rgb(91 174 212 / 0.25);
+      animation: dripple 4s ease-out 1.75s infinite;
+    }
+
+    .wave:after {
+      animation-delay: 2.5s;
+    }
+
+    .wave2 {
+      top: 19vh;
+      transform: scale(0.8);
+    }
+
+    .wave2:before,
+    .wave2:after {
+      animation-delay: 2.25s;
+    }
+
+    .wave3 {
+      top: 8.5vh;
+      transform: scale(0.6);
+    }
+
+    .wave3:before,
+    .wave3:after {
+      animation-delay: 2.65s;
+    }
+
+    .wave4 {
+      top: 0.5vh;
+      transform: scale(0.4);
+    }
+
+    .wave4:before,
+    .wave4:after {
+      animation-delay: 2.95s;
+    }
+
+    .wave5 {
+      top: -4vh;
+      transform: scale(0.2);
+    }
+
+    .wave5:before,
+    .wave5:after {
+      animation-delay: 3.35s;
+    }
+
+    .wave6 {
+      top: -5.5vh;
+      transform: scale(0.1);
+    }
+
+    .wave6:before,
+    .wave6:after {
+      animation-delay: 3.75s;
+    }
+
+    .drop {
+      width: 1em;
+      height: 2em;
+      position: absolute;
+      top: calc(50vh - 1em);
+      left: calc(50vw - 0.5em);
+    }
+
+    .drop:before {
+      content: "";
+      background: #206a93;
+      width: 0.25em;
+      height: 0.25em;
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0.425em;
+      opacity: 0;
+      transform: rotate(45deg);
+      border-radius: 0 100% 100% 100%;
+      animation: drop-jump 4s 0.7s infinite;
+    }
+
+
+    @keyframes ocean {
+      0% {
+        background-size: 100%;
+      }
+
+      50% {
+        background-size: 200%;
+      }
+
+      100% {
+        background-size: 100%;
+      }
+    }
+
+    @keyframes dripple {
+      0% {
+        opacity: 0;
+        width: 10px;
+        height: 10px;
+      }
+
+      12.5% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+        width: 250px;
+        height: 250px;
+        top: -15vh;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes drop-jump {
+      0% {
+        bottom: 0;
+      }
+
+      85% {
+        bottom: 0;
+        opacity: 0;
+      }
+
+      86% {
+        bottom: 0;
+        opacity: 1;
+      }
+
+      95% {
+        bottom: 2vh;
+        opacity: 1;
+      }
+
+      100% {
+        bottom: 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes skip-stone {
+      0% {
+        transform: translate(50vw, 50vh) scale(1);
+      }
+
+      9% {
+        transform: translate(50vw, 35vh) scale(0.80);
+      }
+
+      10% {
+        transform: translate(50vw, 35vh) scale(0.85);
+      }
+
+      19% {
+        transform: translate(50vw, 23vh) scale(0.65);
+      }
+
+      20% {
+        transform: translate(50vw, 23vh) scale(0.70);
+      }
+
+      29% {
+        transform: translate(50vw, 13vh) scale(0.50);
+        margin-left: -2em;
+      }
+
+      30% {
+        transform: translate(50vw, 13vh) scale(0.55);
+        margin-left: -2em;
+      }
+
+      39% {
+        transform: translate(50vw, 5vh) scale(0.35);
+        margin-left: -2.1em;
+      }
+
+      40% {
+        transform: translate(50vw, 5vh) scale(0.40);
+        margin-left: -2.1em;
+      }
+
+      49% {
+        transform: translate(50vw, 0vh) scale(0.20);
+        margin-left: -2.2em;
+      }
+
+      50% {
+        transform: translate(50vw, 0vh) scale(0.25);
+        opacity: 1;
+        margin-left: -2.2em;
+      }
+
+      59% {
+        transform: translate(50vw, -2vh) scale(0.10);
+        opacity: 0.5;
+        margin-left: -2.35em;
+      }
+
+      60% {
+        transform: translate(50vw, -2vh) scale(0.05);
+        opacity: 0;
+        margin-left: -2.35em;
+      }
+
+      100% {
+        transform: translate(50vw, 0vh) scale(0);
+        opacity: 0;
+        margin-left: -2.5em;
+      }
+    }
+
+    @keyframes skip-shadow {
+      0% {
+        transform: translate(50vw, 50vh) scale(1);
+      }
+
+      9% {
+        transform: translate(50vw, 29vh) scale(0.80);
+      }
+
+      10% {
+        transform: translate(50vw, 30vh) scale(0.85);
+      }
+
+      19% {
+        transform: translate(50vw, 17vh) scale(0.65);
+      }
+
+      21% {
+        transform: translate(50vw, 17.5vh) scale(0.70);
+      }
+
+      29% {
+        transform: translate(50vw, 7vh) scale(0.50);
+      }
+
+      31% {
+        transform: translate(50vw, 7.5vh) scale(0.55);
+      }
+
+      39% {
+        transform: translate(50vw, -1vh) scale(0.35);
+      }
+
+      41% {
+        transform: translate(50vw, -0.5vh) scale(0.40);
+      }
+
+      49% {
+        transform: translate(50vw, -6.5vh) scale(0.20);
+      }
+
+      51% {
+        transform: translate(50vw, -7vh) scale(0.25);
+        opacity: 0.2;
+      }
+
+      59% {
+        transform: translate(50vw, -8vh) scale(0.10);
+        opacity: 0.1;
+      }
+
+      61% {
+        transform: translate(50vw, -7.9vh) scale(0.05);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translate(50vw, 0vh) scale(0);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="sky">
+    <div class="sun"> 
+      <span  style="color: #fff;">好风景多的是,夕阳平常事</span>
+      <span style="color: #fff;">过去就过去了,祝前途光明</span>
+    </div>
+
+  </div>
+  <div class="water">
+    <div class="stone"></div>
+    <div class="stone-shadow"></div>
+    <div class="wave"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+    <div class="wave wave4"></div>
+    <div class="wave wave5"></div>
+    <div class="wave wave6"></div>
+  </div>
+  <div class="drop"></div>
+</body>
+
+</html>

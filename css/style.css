@@ -1,0 +1,621 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: url(../images/1.jpg);
+    background-size: cover;
+    animation: fade-in;/*动画名称*/  
+    animation-duration: 2s;/*动画持续时间*/  
+    -webkit-animation:fade-in 2;/*针对webkit内核*/ 
+}
+.content {
+    position: relative;
+    width: 100vh;
+    height: 100vh;
+}
+.container {
+    position: relative;
+    width: 90%;
+    height: 300px;
+    margin: 80px auto 0;
+    background-color: rgb(110, 177, 245);
+    animation: fade-in;/*动画名称*/  
+    animation-duration: 1.5s;/*动画持续时间*/  
+    -webkit-animation:fade-in 1.5s;/*针对webkit内核*/ 
+}
+@keyframes fade-in {  
+    0% {opacity: 0;}/*初始状态 透明度为0*/  
+    40% {opacity: 0;}/*过渡状态 透明度为0*/  
+    100% {opacity: 1;}/*结束状态 透明度为1*/  
+}  
+/* .container .fisrstnav {
+    transition-delay: 50ms;
+}
+
+.container iframe {
+    transition-delay: 400ms;
+} */
+.container ul {
+    margin-top: 5px;
+    background-color: rgb(25, 141, 187);
+    list-style: none;
+}
+.container ul li {
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    font-size: 12px;
+    line-height: 25px;
+}
+.container ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+iframe {
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; */
+    /* margin: 2px auto; */
+}
+.active {
+    background-color: slateblue;
+}
+
+
+input[type="checkbox"]{
+    -webkit-appearance: none;
+    visibility: hidden;
+    display: none;
+}
+.check {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: block;
+    width: 40px;
+    height: 20px;
+    background: #6bcafa;
+    cursor: pointer;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: ease-in 0.5s;
+}
+.check-str {
+    position: fixed;
+    top: 40px;
+    font-size: small;
+     right: 20px;
+     height: 20px;
+     cursor: pointer;
+     overflow: hidden;
+    transition: ease-in 0.5s;
+}
+input[type="checkbox"]:checked ~ .check{
+    background: #fff;
+    box-shadow: 0 0 0 1800px rgba(0, 0, 0, 0.7);
+}
+.check:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: #fff;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+input[type="checkbox"]:checked ~ .check:before{
+    transform: translateX(-50px);
+}
+.check:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: #092c3e;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transition: 0.5s;
+    transform: translateX(50px);
+}
+input[type="checkbox"]:checked ~ .check:after{
+    transform: translateX(0px);
+}
+/* .menu-button:after {
+    content: '+';
+    width: 30px;
+    height: 30px;
+    display: block;
+    color: #000;
+    font-size: 24px;
+    font-weight: lighter;
+    transition: all 300ms ease;
+}
+
+.menu-button:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.menu-button.menu-trigger--menu-open:after {
+    -webkit-transform: rotate(765deg);
+    transform: rotate(765deg);
+} */
+.arrow {
+    display: block;
+}
+
+.content:hover .arrow {
+    display: block;
+}
+
+.arrow-left,
+.arrow-right {
+    font-family: "SimSun", "宋体";
+    width: 30px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: -30px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.arrow-left:hover,
+.arrow-right:hover {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.arrow-left {
+    left: 0;
+}
+
+.arrow-right {
+    right: 0;
+}
+
+
+/* 音乐播放css */
+.controller {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 100%;
+    max-width: 80px;
+    height: 50px;
+}
+.circle {
+    width: 50px;
+    height: 50px;
+    background-color: #222427;
+    border-radius: 50%;
+    /* margin: 2rem auto; */
+    display: flex;
+    border: 3px solid #37b0d8;
+    border-top: 3px solid #0254ec;
+   
+}
+.circle2 {
+    width: 40px;
+    height: 40px;
+    background-color: #252629;
+    border-radius: 50%;
+    border: 1px solid #282529;
+    border-top: 1px solid #66bfe9;
+    align-self: center;
+    display: flex;
+    margin: auto;
+    
+}
+.circle2 .fluid-img{
+    width: 100%;
+    max-width: 160px;
+    height: auto;
+    border-radius: 50%;
+    align-self: center;
+    margin: auto;
+}
+.songs {
+    position: fixed;
+    top: 10px;
+    left: 80px;
+    height: 50px;
+    width: 100px;
+}
+#song-name{
+    color: #15253a;
+    font-size: 10px;
+    font-weight: 400;
+}
+.songs .controls {
+    height: 100px;
+    width: 150px;
+}
+.circle.animate {
+    animation: anticlock 6s infinite linear;
+}
+.circle2.animate {
+    animation: clockwise 6s infinite linear;
+}
+.media-btn {
+    width: 100%;
+    width: 30px;
+    max-width: 50px;
+    height: auto;
+    margin: auto;
+    cursor: pointer;
+    /* margin: 1rem; */
+}
+#circle-bg .media-btn{
+    width: 20px;
+    height: 0px;
+    /* height: auto; */
+    margin: auto;
+    cursor: pointer;
+    /* margin: 1rem; */
+
+}
+
+/* 动画 */
+@keyframes anticlock {
+    from {
+        transform: rotate(360deg);
+    } to {
+        transform: rotate(0deg);
+    }
+}
+@keyframes clockwise {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+.blackcloud{
+    position: absolute;
+    /* display: none; */
+    width: 80%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 999999;
+}
+.musictop {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 35px;
+    background-color: #4da55d;
+}
+.search-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    /* height: 35px; */
+    line-height: 35px;
+}
+
+.search-btn::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 18px;
+    background: url(../images/s-btn.png) no-repeat;
+    background-size: 20px 18px;
+    margin: 10px 0 0px 15px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    /* height: 35px; */
+    line-height: 35px;
+}
+
+.close-btn::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 18px;
+    background: url(../images/close.png) no-repeat;
+    background-size: 20px 18px;
+    margin: 10px 0 0px 15px;
+}
+
+.jd-icon {
+    width: 25px;
+    height: 20px;
+    position: absolute;
+    top: 9px;
+    left: 50px;
+    background: url(../images/搜索.png) no-repeat;
+    background-size: 25px 20px;
+}
+
+.jd-icon::after {
+    content: "";
+    position: absolute;
+    right: -3px;
+    top: 0;
+    display: block;
+    width: 1px;
+    height: 20px;
+    background-color: #ccc;
+}
+.musictop .search {
+    flex: 1;
+    height: 100%;
+    margin-left: 50px;
+    margin-right: 10px;
+    line-height: 35px;
+}
+.musictop .search input::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 18px;
+    background: url(../images/s-btn.png) no-repeat;
+    background-size: 20px 18px;
+    margin: 10px 0 0px 15px;
+}
+.musictop .search input {
+    outline: none;
+    width: 90%;
+    border: 0;
+    height: 1.6rem;
+    border-radius: 0.66rem;
+    background-color: #FFF2CC;
+    font-size: 0.5rem;
+    padding-left: 30px;
+    color: #757575;
+  }
+/* .sou {
+    position: absolute;
+    top: 8px;
+    left: 50px;
+    width: 18px;
+    height: 15px;
+    background: url(../images/jd-sprites.png) no-repeat -81px 0;
+    background-size: 200px auto;
+} */
+.musicmid {
+    position: absolute;
+    margin-top: 35px;
+    margin-bottom: 75px;
+    width: 100%;
+    height: 90%;
+    /* overflow-y: scroll; */
+    background-color: #181be0;
+}
+.musicmid>div{
+    width: 100%;
+    height: 100%;
+}
+.musicmid .home {
+    background-color: #37b0d8;
+}
+/* <!-- 首页轮播图 --> */
+.musicmid .home .focus {
+    position: relative;
+    width: 100%;
+    height: 30%;
+    background-color: #fff;
+}
+.musicmid .home .focus ul {
+    width: 100%;
+    height: 100%;
+}
+.musicmid .home .focus ul li:first-child {
+    display: block;
+}
+.musicmid .home .focus ul li{
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+.musicmid .home .focus ul li img{
+    
+    width: 100%;
+    height: 100%;
+}
+/* 箭头 */
+.musicmid .home .focus .musicarrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    visibility: hidden;
+}
+/* .musicmid .home .focus ul li{
+    width: 100%;
+    height: 100%;
+} */
+/* 歌曲播放列表 */
+.musicmid .list {
+    background-color: #37b0d8;
+}
+.musicmid .list .recommend {
+    /* padding: 1px 2px 0 0px; */
+    height: 12%;
+    width: 100%;
+    background: rgb(20, 18, 18);
+}
+.musicmid .list .recommend h6 {
+    margin-left: 5px;
+}
+.musicmid .list .recommend .btns {
+    margin-top: 2px;
+    margin-left: 10px;
+} 
+.musicmid .list .recommend input{
+    /* margin-left: ; */
+    padding: 2px 3px;
+    border-radius: 12px;
+    outline: none;
+    background: #fff;
+    color: #999;
+}
+/* 音乐展示列表 */
+.musicmid .list .musiclist {
+    height: 88%;
+    width: 100%;
+    background: rgb(253, 250, 250);
+}
+#ul {
+    height: 100%;
+    margin: 0px auto;
+    width: 100%;
+    overflow-y: scroll;
+    background-color: rgba(255, 255, 255, .9);
+}
+.musicmid .list .musiclist li {
+    margin: 0 10px;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+}
+.musicmid .shopcar {
+    background-color: #37b0d8;
+}
+.musicmid .my {
+    background-color: #37b0d8;
+}
+.musicbottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 75px;
+}
+/* .musictab {
+    position: fixed;
+    bottom: 20px;
+    height: 90px;
+    width:  600px;
+    background-color: #0094ff;
+} */
+.musictab1 {
+    z-index:10;
+    position: fixed;
+    bottom: 20px;
+    height: 100px;
+    width:  600px;
+    background-color: #0094ff;
+}
+/* 音频控制器 */
+.audio_con {
+    margin-top: 0;
+    height: 100%;
+    width: 100%;
+    /* background-color: #f1f3f4; */
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.myaudio {
+    /* width: 800px; */
+    /* height: 10px; */
+    height: 100%;
+    width: 100%;
+    /* margin-top: 5px; */
+    outline: none;
+    background-color: #f1f3f4;
+}
+/* tab栏点击颜色改变 */
+.tabactive {
+   background-color: rgb(247, 59, 59) !important;
+}
+.musiccon {
+    display: flex;
+    height: 60%;
+    width: 100%;
+    background-color: #f3b304;
+}
+.wrap {
+    /* width: 25%; */
+    width: 100%;
+    height: 100%;
+    /* background: #000; */
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.wrap ul {
+    display: flex;
+}
+.wrap ul li {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    border-right: 1px solid #0254ec;
+    color: #fff;
+    list-style: none;
+}
+.wrap ul #iconfont {
+    font-size: 26px;
+    color: #fff;
+}
+.wrap ul h6 {
+    color: #ffff;
+}
+/* 头部TAB栏切换 */
+#tab {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width:30%;
+    height: 50px;
+    z-index: 100000;
+    /* overflow: hidden; */
+    overflow-y: scroll;
+}
+::-webkit-scrollbar  
+{  
+    width: 5px;  
+    /* height: 1px;  
+    background-color: #ee6c8c;   */
+}  
+
+::-webkit-scrollbar-track
+{
+	border: 7px solid #232943;
+    box-shadow: inset 0 0 2.5px 2px rgba(0,0,0,0.5);
+	
+}
+
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(
+        45deg,
+        #e1063d,
+        #fa87a0
+    );
+    border-radius: 3px;
+}
+
+#tab li {
+    float: left;
+    width: 25%;
+    height: 95%;
+    box-sizing: border-box;
+    border: 4px solid skyblue;
+    /* text-decoration: none; */
+    white-space: nowrap;
+    list-style: none;
+}
+#tab li img {
+    height: 100%;
+    width: 100%;
+    /* border: 6px solid brown; */
+    box-sizing: border-box;
+    cursor: pointer;
+
+}

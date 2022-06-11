@@ -1,0 +1,281 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --hue: 220;
+}
+
+body {
+    background: hsl(var(--hue), 100%, 5%);
+    /* height: 100vh; */
+    overflow: hidden;
+}
+.bear {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 100px;
+    z-index: 3;
+    background: url(../media/bear.png) no-repeat;
+    /* 我们元素可以添加多个动画， 用逗号分隔 */
+    animation: bear .4s steps(8) infinite, move 3s forwards;
+}
+@keyframes bear {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -1600px 0;
+    }
+}
+
+@keyframes move {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 50%;
+        /* margin-left: -100px; */
+        transform: translateX(-50%);
+    }
+}
+.bg1 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    height: 200px;
+    background: url(../media/bg1.png);
+    z-index: 2;
+    animation: animate 30s linear infinite;
+}
+.bg2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    height: 300px;
+    background: url(../media/bg2.png);
+    z-index: 1;
+    animation: animate 20s linear infinite;
+}
+@keyframes animate 
+{
+    0%
+    {
+        background-position-x: 0;
+    }
+    100%
+    {
+        background-position-x: -3840px;
+    }
+}
+.star {
+    --hue: 55;
+    border-radius: 50%;
+    background: hsl(var(--hue), 100%, 50%);
+    box-shadow: 0 0 5px 1px hsl(var(--hue), 100%, 85%);
+    height: calc(var(--size, 2) * 1px);
+    position: absolute;
+    width: calc(var(--size, 2) * 1px);
+    left: calc(var(--x, 0) * 1vw);
+    opacity: 0.5;
+    top: calc(var(--y, 0) * 1vw);
+    -webkit-animation: flicker calc(var(--duration, 2) * 1s) calc(var(--delay, 10) * 1s) infinite steps(1);
+    animation: flicker calc(var(--duration, 2) * 1s) calc(var(--delay, 10) * 1s) infinite steps(1);
+}
+
+.hill {
+    background: hsl(var(--hue), 100%, 2%);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 25vmin;
+    width: 68vmin;
+    border-radius: 0 100% 0 0;
+}
+
+.hill:after {
+    content: '';
+    position: absolute;
+    height: 15vmin;
+    width: 50vmax;
+    background: hsl(var(--hue), 100%, 2%);
+    left: 0;
+    bottom: 0;
+    border-radius: 0 100% 0 0;
+}
+
+.moon {
+    height: 40vmin;
+    width: 40vmin;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #c6b9b9;
+    border-radius: 50%;
+    box-shadow: 0 0 50px 10px #8c8c8c;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
+}
+
+.lights {
+    width: 200vmax;
+    height: 100vmax;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    -webkit-transform: translate(-20%, -55%) rotate(30deg);
+    transform: translate(-20%, -55%) rotate(30deg);
+    display: -webkit-box;
+    display: flex;
+    -webkit-filter: blur(75px);
+    filter: blur(75px);
+}
+
+.light {
+    -webkit-box-flex: 1;
+    flex: 1;
+    --color-one: hsla(var(--hue-1), 100%, 50%, var(--alpha-1));
+    --color-two: hsla(var(--hue-2), 100%, 50%, var(--alpha-2));
+    --color-three: hsla(var(--hue-3), 100%, 50%, var(--alpha-3));
+    --up: calc(var(--y, 10) * 1vmax);
+    --left: calc(var(--x, 2) * 1vmax);
+    background-image: -webkit-gradient(linear, left bottom, left top, from(transparent), color-stop(10%, var(--color-one)), color-stop(transparent), color-stop(40%, var(--color-two)), color-stop(transparent), color-stop(60%, var(--color-three)));
+    background-image: linear-gradient(0deg, transparent, var(--color-one) 10%, transparent, var(--color-two) 40%, transparent, var(--color-three) 60%);
+    background-size: 100% 40vmax;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    -webkit-transform: translate(var(--left), var(--up)) scale(1);
+    transform: translate(var(--left), var(--up)) scale(1);
+    -webkit-animation: shift calc(var(--duration, 2) * 1s) calc(var(--delay, 0) * -1s) infinite ease;
+    animation: shift calc(var(--duration, 2) * 1s) calc(var(--delay, 0) * -1s) infinite ease;
+}
+
+@media (max-width: 768px) {
+    .light {
+        --up: calc(var(--y, 10) * 2vmax);
+        --left: calc(var(--x, 2) * 2vmax);
+    }
+}
+
+@-webkit-keyframes shift {
+    50% {
+        -webkit-transform: translate(0, 0) scale(1);
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+@keyframes shift {
+    50% {
+        -webkit-transform: translate(0, 0) scale(1);
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+@-webkit-keyframes flicker {
+
+    0%,
+    50%,
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    25% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@keyframes flicker {
+
+    0%,
+    50%,
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    25% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+  /* 文字的css */
+  .text {
+    position: absolute;
+    top: 0;
+    right: 5%;
+  }
+  .text h1 {
+    font-size: 18px;
+    color: #fff;
+    
+  }
+  .text h1 span {
+    display: inline-block;
+    animation: typewriter 1s linear forwards;
+    opacity: 0;
+  }
+@keyframes typewriter {
+    0% {
+        opacity: 0;
+        transform: rotateY(90deg);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateY(0deg);
+        filter: blur(0);
+    }
+}
+/* 第一段文字 */
+.text h1:nth-child(1) span:nth-child(1) {
+  animation-delay: 0.5s;
+}
+.text h1:nth-child(1) span:nth-child(2) {
+  animation-delay: 0.8s;
+}
+.text h1:nth-child(1) span:nth-child(3) {
+  animation-delay: 1.2s;
+}
+.text h1:nth-child(1) span:nth-child(4) {
+  animation-delay: 1.5s;
+}
+.text h1:nth-child(1) span:nth-child(5) {
+  animation-delay: 1.75s;
+}
+.text h1:nth-child(1) span:nth-child(6) {
+  animation-delay: 2s;
+}
+.text h1:nth-child(1) span:nth-child(7) {
+  animation-delay: 2.3s;
+}
+.text h1:nth-child(1) span:nth-child(8) {
+  animation-delay: 2.7s;
+}
+.text h1:nth-child(1) span:nth-child(9) {
+  animation-delay: 3s;
+}
+.text h1:nth-child(1) span:nth-child(10) {
+  animation-delay: 3.3s;
+}
+.text h1:nth-child(1) span:nth-child(11) {
+  animation-delay: 3.6s;
+}
+.text h1:nth-child(1) span:nth-child(12) {
+    animation-delay: 3.9s;
+  }
+  .text h1:nth-child(1) span:nth-child(13) {
+    animation-delay: 4.3s;
+  }
+.text h1:nth-child(1) span:nth-child(14) {
+    animation-delay: 4.6s;
+  }
