@@ -84,9 +84,11 @@ input[type="checkbox"]{
 .check-str {
     position: fixed;
     top: 40px;
+    color:  rgb(151, 10, 10);
     font-size: small;
+    /* background-color:   ; */
      right: 20px;
-     height: 20px;
+     /* height: 20px; */
      cursor: pointer;
      overflow: hidden;
     transition: ease-in 0.5s;
